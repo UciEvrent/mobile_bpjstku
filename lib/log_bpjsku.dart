@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_bpjstku/kontak.dart';
 import 'package:mobile_bpjstku/layanan.dart';
+import 'package:mobile_bpjstku/news.dart';
+import 'package:mobile_bpjstku/notifikasi.dart';
+import 'package:mobile_bpjstku/profil.dart';
 
 class log_BPJSTKU extends StatelessWidget {
   const log_BPJSTKU({Key? key}) : super(key: key);
@@ -21,11 +25,12 @@ class mainBPJSTKU extends StatefulWidget {
 
 class _mainBPJSTKUState extends State<mainBPJSTKU> {
   List<Widget> listScreen = [
-    Text("Layanan", style: TextStyle(fontSize: 30),),
-    Text("Notifikasi", style: TextStyle(fontSize: 30),),
-    Text("Berita", style: TextStyle(fontSize: 30),),
-    Text("Kontak", style: TextStyle(fontSize: 30),),
-    Text("Profil", style: TextStyle(fontSize: 30),),
+    //Text("Layanan", style: TextStyle(fontSize: 30),),
+    viewLayanan(),
+    newNotification(),
+    newNews(),
+    kontak(),
+    profil(),
   ];
 
   int currentScreen = 0;
@@ -33,11 +38,12 @@ class _mainBPJSTKUState extends State<mainBPJSTKU> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("BPJSTKU")),
+      //appBar: AppBar(title: Text("BPJSTKU")),
       body: listScreen.elementAt(currentScreen),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home_repair_service_rounded),backgroundColor: Colors.black,label: 'Layanan'),
+          BottomNavigationBarItem(icon: Icon(Icons.home_repair_service_rounded),label: 'Layanan'),
           BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Notifikasi'),
           BottomNavigationBarItem(icon: Icon(Icons.new_releases_sharp), label: 'Berita'),
           BottomNavigationBarItem(icon: Icon(Icons.contact_phone), label: 'Kontak'),
