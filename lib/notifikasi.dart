@@ -5,6 +5,26 @@ class newNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text("NOTIFIKASI")),
+      ),
+      body: Column(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                  child:
+                  Center(child: Image.asset("assets/images/img_no_image.png")),
+
+              ),
+              Text("Belum ada notifikasi"),
+
+            ],
+          ),
+        ]
+      ),
+    );
   }
 }
