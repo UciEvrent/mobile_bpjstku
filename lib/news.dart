@@ -17,10 +17,11 @@ class _newNewsState extends State<newNews> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    this.APInews();
   }
   APInews() async {
     var URL = Uri.parse("https://sfa.forcapos.xyz/api/news/");
-    var token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2ZhLmZvcmNhcG9zLnh5elwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTYzMjkxNTQyOSwibmJmIjoxNjMyOTE1NDI5LCJqdGkiOiI1eUxTSHMyMEk1WnUyakRmIiwic3ViIjoyOCwicHJ2IjoiZmM0OTU1ODk1MjZiNzY0YjNlYzhhOTVmZTY5MDdlNTdlZjliOGM0YyJ9.2WAgvHy62tuFA7Ixerb9rbgeRzuTXHoERSGqHaTyN40Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2ZhLmZvcmNhcG9zLnh5elwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTYzMjkxNTQyOSwibmJmIjoxNjMyOTE1NDI5LCJqdGkiOiI1eUxT";
+    var token = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2ZhLmZvcmNhcG9zLnh5elwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTYzMjkxNTQyOSwibmJmIjoxNjMyOTE1NDI5LCJqdGkiOiI1eUxTSHMyMEk1WnUyakRmIiwic3ViIjoyOCwicHJ2IjoiZmM0OTU1ODk1MjZiNzY0YjNlYzhhOTVmZTY5MDdlNTdlZjliOGM0YyJ9.2WAgvHy62tuFA7Ixerb9rbgeRzuTXHoERSGqHaTyN40Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2ZhLmZvcmNhcG9zLnh5elwvYXBpXC9hY2NvdW50XC9sb2dpbiIsImlhdCI6MTYzMjkxNTQyOSwibmJmIjoxNjMyOTE1NDI5LCJqdGkiOiI1eUxT';
     var header = {
       'Authorization': token,
     };
@@ -28,8 +29,10 @@ class _newNewsState extends State<newNews> {
       URL,
       headers: header,
     );
+    print(respon.statusCode);
     if (respon.statusCode==200){
       var body=jsonDecode(respon.body)['data'];
+      print(body);
       setState(() {
         news = body;
       });
@@ -68,42 +71,45 @@ class _newNewsState extends State<newNews> {
     var img = item["m_news_img"];
 
     return Card(
-      child: ListTile(
-        title: Row(
-          children: [
-            Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(img),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListTile(
+          title: Row(
+            children: [
+              Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(img),
 
-                )
-              ),
-            ),
-
-            SizedBox(height: 20,),
-
-            Padding(
-                padding: EdgeInsets.only(left: 8),
-                child: Column(
-                  children: [
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: Text(title.toString()),
-
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: Text(date.toString()),
-
-                    ),
-
-                  ],
+                  )
                 ),
-            ),
-          ],
+              ),
+
+              SizedBox(height: 20,),
+
+              Padding(
+                  padding: EdgeInsets.only(left: 8),
+                  child: Column(
+                    children: [
+                      Container(
+                        alignment: Alignment.topLeft,
+                        child: Text(title.toString()),
+
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        child: Text(date.toString()),
+
+                      ),
+
+                    ],
+                  ),
+              ),
+            ],
+          ),
         ),
       ),
     );

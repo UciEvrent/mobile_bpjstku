@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_bpjstku/login.dart';
 
 class profil extends StatelessWidget {
   const profil({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class profil extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: 100,
+            height: 150,
             child: Card(
               shadowColor: Colors.black,
               child: ListTile(
@@ -42,8 +43,10 @@ class profil extends StatelessWidget {
                           Text("Soekarno", style: TextStyle(fontSize: 20),),
                           Text("admin@soekarno.id", style: TextStyle(fontSize: 14),),
                           FlatButton(
-                              onPressed: (){},
-                              child: Text("Pengaturan"),
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => login()));
+                              },
+                              child: Text("Log Out"),
                               color: Colors.blue,
                           ),
 
